@@ -1,3 +1,4 @@
+//La documentacion esta en la pagina de npm
 //npm inint
 
 //con Node JS
@@ -11,18 +12,26 @@ http.createServer((req,res) =>{
 //Con Express
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
+
+//setings
+app.set('appName','My first server');
 
 //middelwares
-app.use(function(req,res,next){
+
+app.use(morgan('combined'));
+
+/*app.use(function(req,res,next){
     console.log('request url:' + req.url);
     next();//sin la funcion next el servidos no pasa a las rutas
-});
+});*/
 
 
-app.use( (req,res,next) =>{
-    console.log('ha pasado por este servidor');
+/*app.use( (req,res,next) =>{
+    console.log('ha pasado por esta funcion');
     next();
 });
+*/
 
 //rutas
     // el simbolo / es la ruta inicial
@@ -40,4 +49,5 @@ app.get('*' ,(req,res) =>{
 
 app.listen(3000, () =>{
     console.log('Server active');
+    console.log('Nombre de la app: ' + app.get('appName'));
 });
