@@ -12,6 +12,17 @@ http.createServer((req,res) =>{
 const express = require('express');
 const app = express();
 
+//middelwares
+app.use(function(req,res,next){
+    console.log('request url:' + req.url);
+    next();//sin la funcion next el servidos no pasa a las rutas
+});
+
+
+app.use( (req,res,next) =>{
+    console.log('ha pasado por este servidor');
+    next();
+});
 
 //rutas
     // el simbolo / es la ruta inicial
